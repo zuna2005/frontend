@@ -36,7 +36,7 @@ const Form = ({heading}) => {
         setErrors(ValidateLogin(values))
         let errorsTemp = ValidateLogin(values)
         if (heading === 'Sign up' && Object.values(errorsTemp).every(value => value === '')) {
-            axios.post('http://localhost:8081/signup', values)
+            axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/signup`, values)
             .then(res => {
                 console.log(res)
                 if (res.data === 'Email exists') {
@@ -50,7 +50,7 @@ const Form = ({heading}) => {
             .catch(err => console.log(err))
         }
         else if (heading === 'Login' && Object.values(errorsTemp).slice(1).every(value => value === '')) {
-            axios.post('http://localhost:8081/login', values)
+            axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/login`, values)
             .then(res => {
                 console.log(res.data)
                 if (res.data === 'Success') {
